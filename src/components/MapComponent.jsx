@@ -44,14 +44,16 @@ export default function MapComponent(){
             <Map
                 style={{width: '90vw', height: '100vh'}}
                 defaultCenter={userPosition}
-                defaultZoom={15}
+                defaultZoom={10}
                 gestureHandling='greedy'
                 disableDefaultUI
                 mapId={"68d9a5bef583da965240143d"}
             >
                 
-                <MapMarkerWithInfoWindow lat={-26.2041} lng={28.0473}/>
-                <MapMarkerWithInfoWindow lat={-33.9321} lng={18.8602}/>
+                <MapMarkerWithInfoWindow lat={-26.2041} lng={28.0473} address={"Location: 6 university road, Campus square"}
+                                         tradingHours={["09:00-17:00 Monday-Friday", "09:00-15:00 Saturday"]} contact={"072 CAPITEC BANK"}/>
+                <MapMarkerWithInfoWindow lat={-33.9321} lng={18.8602} address={"Location: 6 university road, Campus square"}
+                                         tradingHours={["09:00-17:00 Monday-Friday", "09:00-15:00 Saturday"]} contact={"072 CAPITEC BANK"}/>
 
 
             </Map>
