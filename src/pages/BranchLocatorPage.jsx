@@ -1,5 +1,5 @@
 import MapComponent from "../components/MapComponent.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {APIProvider} from "@vis.gl/react-google-maps";
 
 export default function BranchLocatorPage() {
@@ -32,21 +32,35 @@ function SearchBar({setFocusLocation}) {
 
     }
 
-    async function searchPlaces(SearchQuery, setFocusLocation){
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
 
-        const res = await fetch(`https://places.googleapis.com/v1/places:searchText`, {
-            method: "POST",
-            body: JSON.stringify({"textQuery": SearchQuery}),
-            headers: {
-                "Content-Type": "application/json",
-                "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-                "X-Goog-FieldMask": "places.displayName,places.location"
-            }
-        })
-        const data = await res.json();
-        setLocations(data.places || []);
-        console.log("Data :", data.places);
-    }
+        async function searchPlaces(){
+            const res = await fetch(`https://places.googleapis.com/v1/places:searchText`, {
+                method: "POST",
+                body: JSON.stringify({"textQuery": query}),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+                    "X-Goog-FieldMask": "places.displayName,places.location"
+                },
+                signal: signal
+            })
+            const data = await res.json();
+            setLocations(data.places || []);
+            console.log("Data :", data.places);
+        }
+
+        searchPlaces();
+
+        return () => {
+            controller.abort();
+        }
+
+    }, [query])
+
+
 
     function clearSearch(){
         setQuery("")
