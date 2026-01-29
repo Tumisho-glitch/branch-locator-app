@@ -8,8 +8,8 @@ export default function BranchLocatorPage() {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
     return (
-        <div className={"flex flex-col justify-center items-center w-screen space-y-2"}>
-            <h1 className="w-full  text-center">Branch locator page</h1>
+        <div className={"flex flex-col justify-center items-center w-screen space-y-2 p-4"}>
+            <h1 className="w-full  text-center text-2xl font-heading">Branch locator page</h1>
             <SearchBar setFocusLocation={setFocusLocation} />
             <APIProvider apiKey={apiKey}>
                 <MapComponent focusLocation={focusLocation} setFocusLocation={setFocusLocation} />
@@ -54,7 +54,7 @@ function SearchBar({setFocusLocation}) {
 
     return (
         <div>
-            <input className="bg-stone-100 w-200" onChange={e => handleQueryChange(e)} value={query} />
+            <input className="w-200 p-4 rounded-sm border-1 border-red-500 focus:border-3" placeholder="Search for place" onChange={e => handleQueryChange(e)} value={query} />
             {
                 locations && locations.length > 0 &&
                 <SearchResults locations={locations} setFocusLocation={setFocusLocation} clearSearch={clearSearch}/>
@@ -76,10 +76,10 @@ function SearchResults({locations, setFocusLocation, clearSearch}) {
     }
 
     return (
-        <div className="bg-stone-300 space-y-2 font-semibold fixed z-10 w-200 text-center shadow-2xl">
+        <div className="bg-white rounded-2xl space-y-2 font-semibold fixed z-10 w-200 text-center shadow-2xl divide-y">
             {
                locations.map((location) => {
-                    return (<p className="hover:bg-stone-400 hover:cursor-pointer" onClick={()=>handleSetFocusLocation(location)}>{location.displayName.text}</p>)
+                    return (<p className="hover:bg-stone-100 hover:cursor-pointer p-2" onClick={()=>handleSetFocusLocation(location)}>{location.displayName.text}</p>)
                 })
             }
         </div>

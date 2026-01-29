@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: "Roboto-medium";
+    src: url("./fonts/Roboto-Medium.ttf");
+}
+
+@theme {
+    --font-heading: "Roboto-medium";
+}
