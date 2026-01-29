@@ -75,7 +75,7 @@ export default function MapComponent({focusLocation, setFocusLocation}) {
         return <p>Waiting for user position or branches data...</p>
     }
 
-
+    const mapId = import.meta.env.VITE_MAP_ID
 
     return (
 
@@ -85,7 +85,7 @@ export default function MapComponent({focusLocation, setFocusLocation}) {
                 defaultZoom={13}
                 gestureHandling='greedy'
                 disableDefaultUI
-                mapId={"68d9a5bef583da965240143d"}
+                mapId={mapId}
             >
 
                 {
