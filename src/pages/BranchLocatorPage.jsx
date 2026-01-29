@@ -33,6 +33,7 @@ function SearchBar({setFocusLocation}) {
     }
 
     async function searchPlaces(SearchQuery, setFocusLocation){
+
         const res = await fetch(`https://places.googleapis.com/v1/places:searchText`, {
             method: "POST",
             body: JSON.stringify({"textQuery": SearchQuery}),
@@ -54,7 +55,7 @@ function SearchBar({setFocusLocation}) {
 
     return (
         <div>
-            <input className="w-200 p-4 rounded-sm border-1 border-red-500 focus:border-3" placeholder="Search for place" onChange={e => handleQueryChange(e)} value={query} />
+            <input className=" w-90 sm:w-140 md:200 p-4 rounded-sm border-1 border-red-500 focus:border-3" placeholder="Search for place" onChange={e => handleQueryChange(e)} value={query} />
             {
                 locations && locations.length > 0 &&
                 <SearchResults locations={locations} setFocusLocation={setFocusLocation} clearSearch={clearSearch}/>
@@ -76,7 +77,7 @@ function SearchResults({locations, setFocusLocation, clearSearch}) {
     }
 
     return (
-        <div className="bg-white rounded-2xl space-y-2 font-semibold fixed z-10 w-200 text-center shadow-2xl divide-y">
+        <div className="bg-white rounded-2xl space-y-2 font-semibold fixed z-10  text-center shadow-2xl divide-y w-90 sm:w-140 md:200">
             {
                locations.map((location) => {
                     return (<p className="hover:bg-stone-100 hover:cursor-pointer p-2" onClick={()=>handleSetFocusLocation(location)}>{location.displayName.text}</p>)

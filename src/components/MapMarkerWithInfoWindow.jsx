@@ -17,15 +17,15 @@ export default function MapMarkerWithInfoWindow({lat, lng, tradingHours, address
             {
                 isInfoWindowOpen &&
                 <InfoWindow position={{lat: lat, lng: lng}}
-                            maxWidth={300}
+                            maxWidth={400}
                     onClose={() => setIsInfoWindowOpen(false)}
                 >
-                    <div className="flex flex-row">
-                        <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIgyU3fDk3HZadI9L0eYRwkZ7OpXJdv7B55w&s"} alt={"image"} width={200} />
-                        <div>
-                            <p>This an official capitec branch</p>
+                    <div className="flex flex-col w-fit h-fit justify-center items-center">
+                        <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIgyU3fDk3HZadI9L0eYRwkZ7OpXJdv7B55w&s"} alt={"image"} className="w-70" />
+                        <div className="text-sm flex flex-col justify-center items-center">
+                            <h1 className="text-lg font-heading">This an official capitec branch</h1>
                             <p>Location: {address}</p>
-                            <h2>Trading hours</h2>
+                            <h2 className="font-bold">Trading hours</h2>
                             {
                                 <ul>
                                     {
@@ -35,7 +35,7 @@ export default function MapMarkerWithInfoWindow({lat, lng, tradingHours, address
                                     }
                                 </ul>
                             }
-                            <h4>Contact: {contact}</h4>
+                            <h4 className="font-semibold">Contact: {contact}</h4>
                         </div>
                     </div>
 

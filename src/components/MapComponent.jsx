@@ -80,7 +80,7 @@ export default function MapComponent({focusLocation, setFocusLocation}) {
     return (
 
             <Map
-                style={{width: '90vw', height: '100vh'}}
+                style={{width: '90vw', height: '80vh'}}
                 defaultCenter={focusPosition}
                 defaultZoom={13}
                 gestureHandling='greedy'
